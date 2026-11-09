@@ -80,6 +80,11 @@
             zstd
           ];
 
+          # Upstream needs its bundled SQLite build options; the cargo setup hook forces the system one.
+          preBuild = ''
+            export LIBSQLITE3_SYS_USE_PKG_CONFIG=0
+          '';
+
           # The suite needs live database containers and a GPU adapter.
           doCheck = false;
 
