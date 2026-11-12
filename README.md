@@ -77,13 +77,24 @@ environment.unixODBCDrivers = with pkgs.unixodbcDrivers; [ psql ];
 
 ## Update DBDelve
 
-This repository pins upstream as the `dbdelve-src` input. To move to the latest
-upstream commit, run this in this repository:
+This repository pins an upstream release tag as the `dbdelve-src` input. To
+compare the pinned tag with the latest `vX.Y.Z` tag upstream, run this in this
+repository:
 
 ```sh
-nix flake update dbdelve-src
+scripts/update-dbdelve.sh
+```
+
+The script exits with 1 when the pinned tag is behind. To move to the latest
+tag, run this:
+
+```sh
+scripts/update-dbdelve.sh --update
 nix build
 ```
+
+The `--update` option changes the tag in `flake.nix`, updates `flake.lock` and
+vendors the crates. If a step fails, the script restores both files.
 
 Commit the new `flake.lock`. Then update the input in your NixOS configuration:
 

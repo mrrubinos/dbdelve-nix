@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     dbdelve-src = {
-      url = "github:ShayanAbbas1/dbdelve";
+      url = "github:ShayanAbbas1/dbdelve/v0.7.1";
       flake = false;
     };
   };
